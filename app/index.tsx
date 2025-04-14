@@ -1,95 +1,84 @@
 import * as React from 'react';
-import { View } from 'react-native';
-import Animated, { FadeInUp, FadeOutDown, LayoutAnimationConfig } from 'react-native-reanimated';
-import { Info } from '~/lib/icons/Info';
-import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
-import { Button } from '~/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '~/components/ui/card';
-import { Progress } from '~/components/ui/progress';
+import { View, ScrollView, Pressable } from 'react-native';
+import { HealthScoreCard } from '~/components/HealthScoreCard';
 import { Text } from '~/components/ui/text';
-import { Tooltip, TooltipContent, TooltipTrigger } from '~/components/ui/tooltip';
-
-const GITHUB_AVATAR_URI =
-  'https://i.pinimg.com/originals/ef/a2/8d/efa28d18a04e7fa40ed49eeb0ab660db.jpg';
+import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card';
+import { Activity, Brain, Coffee, Moon, Settings } from 'lucide-react-native';
+import { Button } from '~/components/ui/button';
+import { useRouter } from 'expo-router';
 
 export default function Screen() {
-  const [progress, setProgress] = React.useState(78);
+  const [healthScore, setHealthScore] = React.useState(45);
+  const router = useRouter();
 
-  function updateProgressValue() {
-    setProgress(Math.floor(Math.random() * 100));
-  }
+  const increaseScore = () => {
+    setHealthScore(prev => Math.min(100, prev + 5));
+  };
+
+  const decreaseScore = () => {
+    setHealthScore(prev => Math.max(0, prev - 5));
+  };
+
   return (
-    <View className='flex-1 justify-center items-center gap-5 p-6 bg-secondary/30'>
-      <Card className='w-full max-w-sm p-6 rounded-2xl'>
-        <CardHeader className='items-center'>
-          <Avatar alt="Rick Sanchez's Avatar" className='w-24 h-24'>
-            <AvatarImage source={{ uri: GITHUB_AVATAR_URI }} />
-            <AvatarFallback>
-              <Text>RS</Text>
-            </AvatarFallback>
-          </Avatar>
-          <View className='p-3' />
-          <CardTitle className='pb-2 text-center'>Rick Sanchez</CardTitle>
-          <View className='flex-row'>
-            <CardDescription className='text-base font-semibold'>Scientist</CardDescription>
-            <Tooltip delayDuration={150}>
-              <TooltipTrigger className='px-2 pb-0.5 active:opacity-50'>
-                <Info size={14} strokeWidth={2.5} className='w-4 h-4 text-foreground/70' />
-              </TooltipTrigger>
-              <TooltipContent className='py-2 px-4 shadow'>
-                <Text className='native:text-lg'>Freelance</Text>
-              </TooltipContent>
-            </Tooltip>
-          </View>
-        </CardHeader>
-        <CardContent>
-          <View className='flex-row justify-around gap-3'>
-            <View className='items-center'>
-              <Text className='text-sm text-muted-foreground'>Dimension</Text>
-              <Text className='text-xl font-semibold'>C-137</Text>
-            </View>
-            <View className='items-center'>
-              <Text className='text-sm text-muted-foreground'>Age</Text>
-              <Text className='text-xl font-semibold'>70</Text>
-            </View>
-            <View className='items-center'>
-              <Text className='text-sm text-muted-foreground'>Species</Text>
-              <Text className='text-xl font-semibold'>Human</Text>
-            </View>
-          </View>
-        </CardContent>
-        <CardFooter className='flex-col gap-3 pb-0'>
-          <View className='flex-row items-center overflow-hidden'>
-            <Text className='text-sm text-muted-foreground'>Productivity:</Text>
-            <LayoutAnimationConfig skipEntering>
-              <Animated.View
-                key={progress}
-                entering={FadeInUp}
-                exiting={FadeOutDown}
-                className='w-11 items-center'
-              >
-                <Text className='text-sm font-bold text-sky-600'>{progress}%</Text>
-              </Animated.View>
-            </LayoutAnimationConfig>
-          </View>
-          <Progress value={progress} className='h-2' indicatorClassName='bg-sky-600' />
-          <View />
-          <Button
-            variant='outline'
-            className='shadow shadow-foreground/5'
-            onPress={updateProgressValue}
-          >
-            <Text>Update</Text>
+    <ScrollView className='flex-1 bg-background'>
+      <View className='p-4 gap-4'>
+        <View className='flex-row justify-between items-center'>
+          <Button onPress={decreaseScore} variant="outline">
+            <Text>Decrease Score</Text>
           </Button>
-        </CardFooter>
-      </Card>
-    </View>
+          <Button onPress={increaseScore} variant="outline">
+            <Text>Increase Score</Text>
+          </Button>
+        </View>
+
+        <HealthScoreCard score={healthScore} />
+
+        <View className='flex-row flex-wrap gap-4'>
+          <Card className='flex-1 min-w-[150px]'>
+            <CardHeader className='flex-row items-center gap-2'>
+              <Activity size={20} className='text-blue-500' />
+              <CardTitle className='text-lg'>Workout</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Text className='text-2xl font-bold'>45 min</Text>
+              <Text className='text-muted-foreground'>Today's Activity</Text>
+            </CardContent>
+          </Card>
+
+          <Card className='flex-1 min-w-[150px]'>
+            <CardHeader className='flex-row items-center gap-2'>
+              <Moon size={20} className='text-purple-500' />
+              <CardTitle className='text-lg'>Sleep</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Text className='text-2xl font-bold'>7.5 hrs</Text>
+              <Text className='text-muted-foreground'>Last Night</Text>
+            </CardContent>
+          </Card>
+
+          <Card className='flex-1 min-w-[150px]'>
+            <CardHeader className='flex-row items-center gap-2'>
+              <Coffee size={20} className='text-orange-500' />
+              <CardTitle className='text-lg'>Nutrition</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Text className='text-2xl font-bold'>1,850</Text>
+              <Text className='text-muted-foreground'>Calories Today</Text>
+            </CardContent>
+          </Card>
+
+          <Card className='flex-1 min-w-[150px]'>
+            <CardHeader className='flex-row items-center gap-2'>
+              <Brain size={20} className='text-green-500' />
+              <CardTitle className='text-lg'>AI Analysis</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Text className='text-2xl font-bold'>92%</Text>
+              <Text className='text-muted-foreground'>Recovery Score</Text>
+            </CardContent>
+          </Card>
+        </View>
+      </View>
+    </ScrollView>
   );
 }

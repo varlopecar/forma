@@ -1,0 +1,21 @@
+{
+  "analysis": {
+    "title": "Análisis de Entrenamiento",
+    "aiRecommendation": {
+      "title": "Recomendación AI del día",
+      "pushDay": "Push day - Fuerza alta"
+    },
+    "recentWorkouts": {
+      "title": "Entrenamientos Recientes",
+      "today": "Hoy",
+      "yesterday": "Ayer",
+      "daysAgo": "Hace {{count}} días",
+      "intensity": {
+        "high": "Alta",
+        "medium": "Media",
+        "low": "Baja"
+      }
+    },
+    "weeklyIntensity": "Intensidad Semanal"
+  }
+}
