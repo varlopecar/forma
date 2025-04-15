@@ -3,37 +3,48 @@ import { initReactI18next } from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Import translations
-import enCommon from "./locales/en/common.json";
-import esCommon from "./locales/es/common.json";
-import frCommon from "./locales/fr/common.json";
-import enHealthScore from "./locales/en/healthScore.json";
-import esHealthScore from "./locales/es/healthScore.json";
-import enWorkout from "./locales/en/workout.json";
-import esWorkout from "./locales/es/workout.json";
+// Generic translations
+import enGeneric from "./locales/en/generic.json";
+import esGeneric from "./locales/es/generic.json";
+import frGeneric from "./locales/fr/generic.json";
+
+// Business logic translations
+import enBusinessLogic from "./locales/en/businessLogic.json";
+import esBusinessLogic from "./locales/es/businessLogic.json";
+import frBusinessLogic from "./locales/fr/businessLogic.json";
+
+// Page-specific translations
 import enSettings from "./locales/en/settings.json";
 import esSettings from "./locales/es/settings.json";
+import frSettings from "./locales/fr/settings.json";
+import enWorkoutAnalysis from "./locales/en/workoutAnalysis.json";
+import esWorkoutAnalysis from "./locales/es/workoutAnalysis.json";
+import frWorkoutAnalysis from "./locales/fr/workoutAnalysis.json";
 
 // Initialize i18n
 i18n.use(initReactI18next).init({
   resources: {
     en: {
-      common: enCommon,
-      healthScore: enHealthScore,
-      workout: enWorkout,
+      generic: enGeneric,
+      businessLogic: enBusinessLogic,
       settings: enSettings,
+      workoutAnalysis: enWorkoutAnalysis,
     },
     es: {
-      common: esCommon,
-      healthScore: esHealthScore,
-      workout: esWorkout,
+      generic: esGeneric,
+      businessLogic: esBusinessLogic,
       settings: esSettings,
+      workoutAnalysis: esWorkoutAnalysis,
     },
     fr: {
-      common: frCommon,
+      generic: frGeneric,
+      businessLogic: frBusinessLogic,
+      settings: frSettings,
+      workoutAnalysis: frWorkoutAnalysis,
     },
   },
   fallbackLng: "en",
-  defaultNS: "common",
+  defaultNS: "generic",
   interpolation: {
     escapeValue: false,
   },

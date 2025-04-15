@@ -1,9 +1,0 @@
-{
-  "label": {
-    "excellent": "Excellent",
-    "good": "Good",
-    "improve": "Needs Improvement"
-  },
-  "title": "Health Score",
-  "description": "Your overall health score based on various metrics"
-}

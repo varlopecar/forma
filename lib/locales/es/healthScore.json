@@ -1,9 +1,0 @@
-{
-  "label": {
-    "excellent": "Excelente",
-    "good": "Bueno",
-    "improve": "Necesita Mejorar"
-  },
-  "title": "Puntuación de Salud",
-  "description": "Tu puntuación de salud general basada en varias métricas"
-}

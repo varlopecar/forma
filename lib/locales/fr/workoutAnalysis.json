@@ -1,0 +1,13 @@
+{
+  "title": "Analyse d'Entraînement",
+  "aiRecommendation": {
+    "title": "Recommandation IA du jour"
+  },
+  "recentWorkouts": {
+    "title": "Entraînements Récents",
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "daysAgo": "il y a {{count}} jours"
+  },
+  "weeklyIntensity": "Intensité Hebdomadaire"
+}

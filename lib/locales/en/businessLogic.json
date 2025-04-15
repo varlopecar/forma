@@ -1,0 +1,24 @@
+{
+  "healthScore": {
+    "title": "Health Score",
+    "description": "Your overall health score based on various metrics",
+    "levels": {
+      "excellent": "Excellent",
+      "good": "Good",
+      "improve": "Needs Improvement"
+    }
+  },
+  "workout": {
+    "intensity": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "types": {
+      "push": "Push day - High strength",
+      "pull": "Pull day",
+      "legs": "Legs day",
+      "cardio": "Cardio"
+    }
+  }
+}

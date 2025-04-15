@@ -49,7 +49,7 @@ const interpolateColors = (color1: string, color2: string, factor: number): stri
 };
 
 export function HealthScoreCard({ score, className = '' }: HealthScoreCardProps) {
-    const { t } = useAppTranslation("healthScore");
+    const { t } = useAppTranslation("businessLogic");
     const scaleAnim = React.useRef(new Animated.Value(1)).current;
     const rotateAnim = React.useRef(new Animated.Value(0)).current;
     const iconScaleAnim = React.useRef(new Animated.Value(1)).current;
@@ -148,7 +148,7 @@ export function HealthScoreCard({ score, className = '' }: HealthScoreCardProps)
     return (
         <Card className={`p-6 ${className}`}>
             <View className="flex-row items-center justify-between mb-4">
-                <Text className="text-lg font-semibold">{t("title")}</Text>
+                <Text className="text-lg font-semibold">{t("healthScore.title")}</Text>
                 <Tooltip>
                     <TooltipTrigger>
                         <Animated.View
@@ -167,7 +167,7 @@ export function HealthScoreCard({ score, className = '' }: HealthScoreCardProps)
                         </Animated.View>
                     </TooltipTrigger>
                     <TooltipContent>
-                        <Text>{t("description")}</Text>
+                        <Text>{t("healthScore.description")}</Text>
                     </TooltipContent>
                 </Tooltip>
             </View>
@@ -182,7 +182,7 @@ export function HealthScoreCard({ score, className = '' }: HealthScoreCardProps)
                     {score}
                 </Text>
                 <Text className="text-lg" style={{ color: currentColor }}>
-                    {t(`label.${interpretation.text}`)}
+                    {t(`healthScore.levels.${interpretation.text}`)}
                 </Text>
             </Animated.View>
 

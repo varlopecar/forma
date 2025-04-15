@@ -12,7 +12,7 @@ export type Language = {
 export const SUPPORTED_LANGUAGES: Language[] = [
   { code: "en", name: "English" },
   { code: "es", name: "Español" },
-  // Add more languages as needed
+  { code: "fr", name: "Français" },
 ];
 
 export const useLanguageSwitcher = () => {

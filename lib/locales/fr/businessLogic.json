@@ -1,0 +1,24 @@
+{
+  "healthScore": {
+    "title": "Score de Santé",
+    "description": "Votre score de santé global basé sur diverses métriques",
+    "levels": {
+      "excellent": "Excellent",
+      "good": "Bon",
+      "improve": "Besoin d'Amélioration"
+    }
+  },
+  "workout": {
+    "intensity": {
+      "high": "Élevée",
+      "medium": "Moyenne",
+      "low": "Faible"
+    },
+    "types": {
+      "push": "Jour de poussée - Haute force",
+      "pull": "Jour de traction",
+      "legs": "Jour de jambes",
+      "cardio": "Cardio"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "healthScore": {
+    "title": "Puntuación de Salud",
+    "description": "Tu puntuación de salud general basada en varias métricas",
+    "levels": {
+      "excellent": "Excelente",
+      "good": "Bueno",
+      "improve": "Necesita Mejora"
+    }
+  },
+  "workout": {
+    "intensity": {
+      "high": "Alta",
+      "medium": "Media",
+      "low": "Baja"
+    },
+    "types": {
+      "push": "Día de empuje - Alta fuerza",
+      "pull": "Día de tracción",
+      "legs": "Día de piernas",
+      "cardio": "Cardio"
+    }
+  }
+}

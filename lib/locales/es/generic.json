@@ -1,0 +1,21 @@
+{
+  "button": {
+    "next": "Siguiente",
+    "save": "Guardar",
+    "ok": "OK",
+    "cancel": "Cancelar",
+    "increaseScore": "Aumentar Puntuación"
+  },
+  "action": {
+    "back": "Atrás",
+    "continue": "Continuar",
+    "submit": "Enviar",
+    "delete": "Eliminar",
+    "edit": "Editar"
+  },
+  "status": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito"
+  }
+}
