@@ -1,16 +1,27 @@
-# Starter base
+# Forma - Health & Wellness App
 
-A starting point to help you set up your project quickly and use the common components provided by `react-native-reusables`. The idea is to make it easier for you to get started.
+A modern React Native application built with Expo, featuring beautiful animations and a clean UI design.
 
 ## Features
 
-- NativeWind v4
-- Dark and light mode
+- **NativeWind v4** - Utility-first CSS framework for styling
+- **React Native Reanimated** - High-performance animations
+- **Dark and light mode**
   - Android Navigation Bar matches mode
   - Persistent mode
-- Common components
-  - ThemeToggle, Avatar, Button, Card, Progress, Text, Tooltip
 
-<img src="https://github.com/mrzachnugent/react-native-reusables/assets/63797719/42c94108-38a7-498b-9c70-18640420f1bc"
-     alt="starter-base-template"
-     style="width:270px;" />
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   pnpm install (recommended)
+   ```
+3. Start the development server:
+   ```bash
+   npm run start
+   # or
+   pnpm start (recommended)
+   ```
