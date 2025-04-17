@@ -21,7 +21,7 @@ A modern React Native application built with Expo, featuring beautiful animation
    ```
 3. Start the development server:
    ```bash
-   npm run start
+   npm run dev
    # or
-   pnpm start (recommended)
+   pnpm dev (recommended)
    ```
