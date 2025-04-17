@@ -3,7 +3,10 @@ import { View, ScrollView, Pressable } from 'react-native';
 import { HealthScoreCard } from '~/components/HealthScoreCard';
 import { Text } from '~/components/ui/text';
 import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card';
-import { Activity, Brain, Coffee, Moon, Settings } from 'lucide-react-native';
+import { Activity } from '~/lib/icons/Activity';
+import { Brain } from '~/lib/icons/Brain';
+import { Moon } from '~/lib/icons/Moon';
+import { Coffee } from '~/lib/icons/Coffee';
 import { Button } from '~/components/ui/button';
 import { useRouter } from 'expo-router';
 

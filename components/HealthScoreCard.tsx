@@ -4,7 +4,7 @@ import { Card } from './ui/card';
 import { Text } from './ui/text';
 import { Progress } from './ui/progress';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
-import { Zap } from 'lucide-react-native';
+import { Zap } from '~/lib/icons/Zap';
 import { useAppTranslation } from "~/hooks/useAppTranslation";
 
 interface HealthScoreCardProps {
@@ -162,7 +162,6 @@ export function HealthScoreCard({ score, className = '' }: HealthScoreCardProps)
                             <Zap
                                 size={24}
                                 color={currentColor}
-                                className="opacity-80"
                             />
                         </Animated.View>
                     </TooltipTrigger>
