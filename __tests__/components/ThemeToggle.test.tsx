@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@testing-library/react-native';
-import { ThemeToggle } from '../ThemeToggle';
 import { useColorScheme } from '~/lib/useColorScheme';
 import { setAndroidNavigationBar } from '~/lib/android-navigation-bar';
+import { ThemeToggle } from '~/components/ThemeToggle';
 
 jest.mock('~/lib/useColorScheme');
 jest.mock('~/lib/android-navigation-bar');

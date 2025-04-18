@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Text } from '~/components/ui/text';
-import { useLanguageSwitcher } from '~/lib/hooks/useLanguageSwitcher';
+import { useLanguageSwitcher } from '~/hooks/useLanguageSwitcher';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
     Select,
