@@ -37,6 +37,7 @@ Syntax and Formatting
 UI and Styling
 
 - Use React Native Reusables components for common UI patterns and layouts. Here you have the official documentation: https://rnr-docs.vercel.app/getting-started/introduction/
+- The default folder where the components are available is components/ui.
 - Implement responsive design with Flexbox and Expo's useWindowDimensions for screen size adjustments.
 - Use NativeWind (Tailwind CSS for React Native) for component styling with className props.
 - Respect the dark mode support using the custom useColorScheme hook that wraps NativeWind's implementation.
