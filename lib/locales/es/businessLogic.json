@@ -18,7 +18,8 @@
       "push": "Día de empuje - Alta fuerza",
       "pull": "Día de tracción",
       "legs": "Día de piernas",
-      "cardio": "Cardio"
+      "cardio": "Cardio",
+      "rest": "Día de descanso"
     }
   }
 }

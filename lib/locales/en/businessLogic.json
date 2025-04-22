@@ -18,7 +18,8 @@
       "push": "Push day - High strength",
       "pull": "Pull day",
       "legs": "Legs day",
-      "cardio": "Cardio"
+      "cardio": "Cardio",
+      "rest": "Rest day"
     }
   }
 }

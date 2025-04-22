@@ -18,7 +18,8 @@
       "push": "Jour de poussée - Haute force",
       "pull": "Jour de traction",
       "legs": "Jour de jambes",
-      "cardio": "Cardio"
+      "cardio": "Cardio",
+      "rest": "Jour de repos"
     }
   }
 }
