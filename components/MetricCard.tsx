@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { View } from 'react-native';
-import { Card } from './card';
-import { Text } from './text';
+import { Card } from './ui/card';
+import { Text } from './ui/text';
 import { cn } from '~/lib/utils';
 
 export interface MetricCardProps {

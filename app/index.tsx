@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native';
 import { HealthScoreCard } from '~/components/HealthScoreCard';
 import { WorkoutAnalysisCard } from '~/components/dashboard/WorkoutAnalysisCard';
 import { Text } from '~/components/ui/text';
-import { MetricCard } from '~/components/ui/MetricCard';
+import { MetricCard } from '~/components/MetricCard';
 import { Activity } from '~/lib/icons/Activity';
 import { Brain } from '~/lib/icons/Brain';
 import { Moon } from '~/lib/icons/Moon';

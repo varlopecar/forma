@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 import { View, Text as RNText } from 'react-native';
-import { MetricCard } from '~/components/ui/MetricCard';
+import { MetricCard } from '~/components/MetricCard';
 
 // Mock dependencies
 jest.mock('~/components/ui/card', () => ({

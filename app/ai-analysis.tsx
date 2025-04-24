@@ -7,26 +7,25 @@ import { Moon } from '~/lib/icons/Moon';
 import { Zap } from '~/lib/icons/Zap';
 import { useMockWorkoutData } from '~/hooks/useMockWorkoutData';
 import { useAppTranslation } from '~/hooks/useAppTranslation';
-import { openai } from '@ai-sdk/openai';
-import { streamText } from 'ai';
+import { generateText } from 'ai';
 import { Dumbbell } from '~/lib/icons/Dumbbell';
 import { Input } from '~/components/ui/input';
 import { MessageCard } from '~/components/ai/MessageCard';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { MetricCard } from '~/components/ui/MetricCard';
-
-const mockAIResponses = [
-    "Based on your recent workout history, I recommend focusing on recovery today. Your high-intensity leg workout yesterday needs proper recovery time.",
-    "Your sleep patterns show improvement! You're averaging 7.5 hours, which is optimal for muscle recovery and cognitive function.",
-    "I notice your nutrition has been consistent. Consider adding more protein on workout days to support muscle growth.",
-    "Your health score is improving steadily. Keep up the consistent workout schedule and balanced nutrition.",
-    "Looking at your data, I suggest a moderate cardio session today to complement your strength training routine."
-];
+import { MetricCard } from '~/components/MetricCard';
+import { createOpenAI } from '@ai-sdk/openai';
 
 interface Message {
     role: 'user' | 'assistant';
     content: string;
 }
+
+// Configure OpenAI provider with proper settings
+const ai = createOpenAI({
+    compatibility: 'strict',
+    apiKey: process.env.EXPO_PUBLIC_OPENAI_API_KEY,
+    baseURL: 'https://api.openai.com/v1',
+});
 
 // Adjusted layout structure
 export default function AIAnalysisScreen() {
@@ -52,42 +51,30 @@ export default function AIAnalysisScreen() {
     const handleSend = async () => {
         if (!input.trim()) return;
 
-        const userMessage = { role: 'user' as const, content: input.trim() };
+        const userMessage = { role: 'user' as const, content: input };
         setMessages(prev => [...prev, userMessage]);
         setInput('');
         setIsLoading(true);
 
-        // For React Native, we're using mock responses
-        // In a production app, you would call an API route that handles the OpenAI integration
-        setTimeout(() => {
-            const randomIndex = Math.floor(Math.random() * mockAIResponses.length);
-            const aiResponse = {
-                role: 'assistant' as const,
-                content: mockAIResponses[randomIndex]
-            };
+        try {
+            const { text } = await generateText({
+                model: ai('gpt-3.5-turbo'),
+                messages: [...messages, userMessage].map(m => ({
+                    role: m.role,
+                    content: m.content
+                })),
+                temperature: 0.7,
+            });
 
-            setMessages(prev => [...prev, aiResponse]);
+            const aiMessage = { role: 'assistant' as const, content: text };
+            setMessages(prev => [...prev, aiMessage]);
+        } catch (error) {
+            console.error('Error generating response:', error);
+            const errorMessage = { role: 'assistant' as const, content: 'I apologize, but I encountered an error. Please try again.' };
+            setMessages(prev => [...prev, errorMessage]);
+        } finally {
             setIsLoading(false);
-        }, 1500);
-    };
-
-    // This would be the actual OpenAI implementation in a server environment
-    const processMessageWithOpenAI = async (messages: Message[]) => {
-        // With AI SDK 4.x, we would use streamText instead of direct OpenAI API calls
-        const result = await streamText({
-            model: openai('o3-mini'),
-            messages: messages.map(m => ({
-                role: m.role,
-                content: [{ type: 'text', text: m.content }]
-            })),
-            providerOptions: {
-                openai: {
-                    reasoningEffort: 'low',
-                },
-            },
-        });
-
-        return result;
+        }
     };
 
     return (
@@ -111,7 +98,7 @@ export default function AIAnalysisScreen() {
                 }}
             >
                 {/* Context Cards - Fixed height */}
-                <View className="max-h-[110px]">
+                {/* <View className="max-h-[110px]">
                     <ScrollView
                         horizontal
                         showsHorizontalScrollIndicator={false}
@@ -160,7 +147,7 @@ export default function AIAnalysisScreen() {
                             testID="health-metric"
                         />
                     </ScrollView>
-                </View>
+                </View> */}
 
                 {/* Chat Messages - Flex grow to take available space */}
                 <View className="flex-1">
