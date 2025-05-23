@@ -116,3 +116,58 @@ Key Conventions
 API Documentation
 
 - Use Expo's official documentation for setting up and configuring your projects: https://docs.expo.dev/
+
+Authentication Architecture
+
+- Use Context API for authentication state management:
+  - Keep auth state (user, token) in a dedicated AuthContext
+  - Provide login, register, and logout functions through the context
+  - Handle loading and error states within the auth context
+  - Use TypeScript interfaces for auth-related types
+
+- Authentication Flow:
+  - Implement protected routes using expo-router
+  - Handle token persistence using expo-secure-store
+  - Implement proper error handling for auth operations
+  - Use loading states for better UX during auth operations
+
+- Auth Context Structure:
+  ```typescript
+  interface AuthState {
+    user: User | null;
+    token: string | null;
+    isLoading: boolean;
+    error: string | null;
+  }
+
+  interface AuthContextType extends AuthState {
+    login: (email: string, password: string) => Promise<void>;
+    register: (email: string, password: string, name: string) => Promise<void>;
+    logout: () => Promise<void>;
+  }
+  ```
+
+- Auth Screen Guidelines:
+  - Use consistent form layouts across login and register screens
+  - Implement proper form validation
+  - Show loading states during auth operations
+  - Display error messages clearly
+  - Provide easy navigation between auth screens
+  - Use NativeWind for consistent styling
+
+- Security Best Practices:
+  - Never store sensitive data in AsyncStorage
+  - Use expo-secure-store for token storage
+  - Implement proper token refresh mechanisms
+  - Sanitize user inputs
+  - Use HTTPS for all API calls
+  - Implement proper password requirements
+  - Handle session expiration gracefully
+
+- Testing Authentication:
+  - Test successful login/register flows
+  - Test error handling
+  - Test loading states
+  - Test token persistence
+  - Test protected route access
+  - Mock auth context in component tests

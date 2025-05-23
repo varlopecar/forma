@@ -1,11 +1,10 @@
 import { useTranslation } from "react-i18next";
 import i18n from "~/lib/i18n";
 
-export const useAppTranslation = (ns?: string | string[]) => {
-  const namespaces = ns ? (Array.isArray(ns) ? ns : ns) : ["generic"];
-
-  return useTranslation(namespaces);
-};
+export function useAppTranslation(namespace: string) {
+  const { t, i18n } = useTranslation(namespace);
+  return { t, i18n };
+}
 
 export const setLanguage = async (language: string) => {
   try {

@@ -23,7 +23,6 @@ export function MetricCard({
     className,
     testID
 }: MetricCardProps) {
-    // Create a copy of the icon with the color class applied
     const styledIcon = React.isValidElement(icon)
         ? React.cloneElement(icon as React.ReactElement, {
             className: iconColor

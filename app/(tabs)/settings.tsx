@@ -2,11 +2,14 @@ import React from 'react';
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Text } from '~/components/ui/text';
-import { ThemeToggle } from '../components/ThemeToggle';
+import { Button } from '~/components/ui/button';
+import { useAuth } from '~/lib/auth/AuthContext';
 import { LanguageSelector } from '~/components/LanguageSelector';
+import { ThemeToggle } from '~/components/ThemeToggle';
 
 export default function SettingsScreen() {
     const { t } = useTranslation("settings");
+    const { logout } = useAuth();
 
     return (
         <View className="flex-1 p-4 bg-background">
@@ -19,6 +22,15 @@ export default function SettingsScreen() {
                     <Text className="text-lg">{t('theme')}</Text>
                     <ThemeToggle />
                 </View>
+
+                {/* Logout Button */}
+                <Button
+                    variant="destructive"
+                    onPress={logout}
+                    className="mt-8"
+                >
+                    <Text className="text-destructive-foreground">{t('logout')}</Text>
+                </Button>
             </View>
         </View>
     );

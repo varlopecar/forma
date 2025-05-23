@@ -1,18 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { View, ScrollView, Pressable, KeyboardAvoidingView, Platform } from 'react-native';
-import { Stack } from 'expo-router';
 import { Text } from '~/components/ui/text';
-import { Coffee } from '~/lib/icons/Coffee';
-import { Moon } from '~/lib/icons/Moon';
-import { Zap } from '~/lib/icons/Zap';
 import { useMockWorkoutData } from '~/hooks/useMockWorkoutData';
 import { useAppTranslation } from '~/hooks/useAppTranslation';
 import { generateText } from 'ai';
-import { Dumbbell } from '~/lib/icons/Dumbbell';
 import { Input } from '~/components/ui/input';
 import { MessageCard } from '~/components/ai/MessageCard';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { MetricCard } from '~/components/MetricCard';
 import { createOpenAI } from '@ai-sdk/openai';
 
 interface Message {
@@ -27,7 +21,6 @@ const ai = createOpenAI({
     baseURL: 'https://api.openai.com/v1',
 });
 
-// Adjusted layout structure
 export default function AIAnalysisScreen() {
     const { t } = useAppTranslation("businessLogic");
     const [messages, setMessages] = useState<Message[]>([
@@ -83,73 +76,12 @@ export default function AIAnalysisScreen() {
             className="flex-1 bg-background"
             keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
         >
-            <Stack.Screen
-                options={{
-                    title: 'AI Analysis',
-                    headerTitleStyle: { fontWeight: 'bold' }
-                }}
-            />
-
-            {/* Add top safe area padding if needed */}
             <View
                 className="flex-1"
                 style={{
-                    paddingTop: insets.top > 0 ? 0 : 8, // Only add padding if not in a safe area
+                    paddingTop: insets.top > 0 ? 0 : 8,
                 }}
             >
-                {/* Context Cards - Fixed height */}
-                {/* <View className="max-h-[110px]">
-                    <ScrollView
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                        className="px-4 pt-2 pb-2"
-                        style={{
-                            marginLeft: insets.left, // Respect left safe area
-                            marginRight: insets.right // Respect right safe area
-                        }}
-                    >
-                        <MetricCard
-                            icon={<Dumbbell size={20} />}
-                            title="Workout"
-                            value={t(`workout.types.${recommendation.type}`.split(' ')[0])}
-                            iconColor="text-blue-500"
-                            className="mr-3 p-2 h-[90px] w-[130px]"
-                            testID="workout-metric"
-                        />
-
-                        <MetricCard
-                            icon={<Moon size={20} />}
-                            title="Sleep"
-                            value="7.5 hrs"
-                            subtitle="Last Night"
-                            iconColor="text-purple-500"
-                            className="mr-3 p-2 h-[90px] w-[130px]"
-                            testID="sleep-metric"
-                        />
-
-                        <MetricCard
-                            icon={<Coffee size={20} />}
-                            title="Nutrition"
-                            value="1,850 cal"
-                            subtitle="Today"
-                            iconColor="text-orange-500"
-                            className="mr-3 p-2 h-[90px] w-[130px]"
-                            testID="nutrition-metric"
-                        />
-
-                        <MetricCard
-                            icon={<Zap size={20} />}
-                            title="Health"
-                            value="75/100"
-                            subtitle="Score"
-                            iconColor="text-green-500"
-                            className="p-2 h-[90px] w-[130px]"
-                            testID="health-metric"
-                        />
-                    </ScrollView>
-                </View> */}
-
-                {/* Chat Messages - Flex grow to take available space */}
                 <View className="flex-1">
                     <ScrollView
                         ref={scrollViewRef}
@@ -181,7 +113,6 @@ export default function AIAnalysisScreen() {
                     </ScrollView>
                 </View>
 
-                {/* Input Area - Fixed at bottom with safe area considerations */}
                 <View
                     className="border-t border-[#e5e5e5] bg-background"
                     style={{

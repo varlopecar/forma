@@ -1,16 +1,17 @@
 import '~/global.css';
 
 import { DarkTheme, DefaultTheme, Theme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
+import { Stack, useRouter, useSegments } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { Platform, Pressable } from 'react-native';
+import { Platform } from 'react-native';
 import { NAV_THEME } from '~/lib/constants';
 import { useColorScheme } from '~/lib/useColorScheme';
 import { PortalHost } from '@rn-primitives/portal';
 import { setAndroidNavigationBar } from '~/lib/android-navigation-bar';
-import { useRouter } from 'expo-router';
-import { Settings } from '~/lib/icons/Settings';
+import { AuthProvider, useAuth } from '../lib/auth/AuthContext';
+import { I18nProvider } from '~/providers/I18nProvider';
+
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
   colors: NAV_THEME.light,
@@ -25,13 +26,47 @@ export {
   ErrorBoundary,
 } from 'expo-router';
 
-export default function RootLayout() {
-  const hasMounted = React.useRef(false);
-  const { colorScheme, isDarkColorScheme } = useColorScheme();
-  const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
+function useProtectedRoute(user: any) {
+  const segments = useSegments();
   const router = useRouter();
 
-  useIsomorphicLayoutEffect(() => {
+  React.useEffect(() => {
+    const inAuthGroup = segments[0] === '(auth)';
+
+    if (!user && !inAuthGroup) {
+      // Redirect to the login page if not authenticated
+      router.replace('/(auth)/login');
+    } else if (user && inAuthGroup) {
+      // Redirect to the home page if authenticated
+      router.replace('/(tabs)');
+    }
+  }, [user, segments]);
+}
+
+function RootLayoutNav() {
+  const { user } = useAuth();
+  const { colorScheme, isDarkColorScheme } = useColorScheme();
+
+  useProtectedRoute(user);
+
+  return (
+    <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+      <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="(auth)" />
+      </Stack>
+      <PortalHost />
+    </ThemeProvider>
+  );
+}
+
+export default function RootLayout() {
+  const hasMounted = React.useRef(false);
+  const { colorScheme } = useColorScheme();
+  const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
+
+  React.useEffect(() => {
     if (hasMounted.current) {
       return;
     }
@@ -50,32 +85,11 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-      <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
-      <Stack>
-        <Stack.Screen
-          name='index'
-          options={{
-            title: 'Dashboard',
-            headerRight: () => (
-              <Pressable
-                onPress={() => router.push('/settings')}
-                className="mr-4"
-              >
-                <Settings size={24} className="text-foreground" />
-              </Pressable>
-            ),
-          }}
-        />
-        <Stack.Screen
-          name='settings'
-          options={{
-            title: 'Settings',
-          }}
-        />
-      </Stack>
-      <PortalHost />
-    </ThemeProvider>
+    <I18nProvider>
+      <AuthProvider>
+        <RootLayoutNav />
+      </AuthProvider>
+    </I18nProvider>
   );
 }
 

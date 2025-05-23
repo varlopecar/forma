@@ -29,7 +29,7 @@ export function ThemeToggle() {
           )}
         >
           {isDarkColorScheme ? (
-            <MoonStar testID="moon-star-icon" className='text-foreground' size={23} strokeWidth={1.25} />
+            <MoonStar testID="moon-star-icon" className='text-foreground' size={24} strokeWidth={1.25} />
           ) : (
             <Sun testID="sun-icon" className='text-foreground' size={24} strokeWidth={1.25} />
           )}

@@ -2,5 +2,6 @@
   "title": "Settings",
   "language": "Language",
   "theme": "Theme",
-  "restartNotice": "Some changes may require restarting the app"
+  "restartNotice": "Some changes may require restarting the app",
+  "logout": "Logout"
 }

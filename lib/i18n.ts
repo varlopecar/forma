@@ -21,6 +21,11 @@ import enWorkoutAnalysis from "./locales/en/workoutAnalysis.json";
 import esWorkoutAnalysis from "./locales/es/workoutAnalysis.json";
 import frWorkoutAnalysis from "./locales/fr/workoutAnalysis.json";
 
+// Auth translations
+import enAuth from "./locales/en/auth.json";
+import esAuth from "./locales/es/auth.json";
+import frAuth from "./locales/fr/auth.json";
+
 // Initialize i18n
 i18n.use(initReactI18next).init({
   resources: {
@@ -29,18 +34,21 @@ i18n.use(initReactI18next).init({
       businessLogic: enBusinessLogic,
       settings: enSettings,
       workoutAnalysis: enWorkoutAnalysis,
+      auth: enAuth,
     },
     es: {
       generic: esGeneric,
       businessLogic: esBusinessLogic,
       settings: esSettings,
       workoutAnalysis: esWorkoutAnalysis,
+      auth: esAuth,
     },
     fr: {
       generic: frGeneric,
       businessLogic: frBusinessLogic,
       settings: frSettings,
       workoutAnalysis: frWorkoutAnalysis,
+      auth: frAuth,
     },
   },
   fallbackLng: "en",
